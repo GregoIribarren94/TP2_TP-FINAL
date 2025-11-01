@@ -1,0 +1,17 @@
+import { Sequelize } from "sequelize";
+import { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DIALEC } from "../config/config.js"; 
+
+const connection = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: DB_DIALECT,
+  port: DB_PORT,
+});
+
+try {
+  await connection.authenticate();
+  console.log("✅ Conexión establecida correctamente con la base de datos.");
+} catch (error) {
+  console.error("❌ Error al conectar con la base de datos:", error.message);
+}
+
+export default connection;
