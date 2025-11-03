@@ -1,4 +1,5 @@
 import express from "express";
+import connection from "./db/connection.js";
 
 const app = express();
 
