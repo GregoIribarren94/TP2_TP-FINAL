@@ -6,6 +6,14 @@ class UserService {
     const { id, name, mail } = newUser;
     return { id, name, mail }; 
   };
+
+    getAllUsers = async() => {
+    const users = await User.findAll({
+      attributes:["name", "mail"]
+    })
+
+    return users;
+  };
 }
 
 export default UserService;

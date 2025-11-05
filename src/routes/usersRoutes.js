@@ -7,5 +7,7 @@ const usersRoutes = Router();
 
 
 usersRoutes.post("/", userController.createUser);
+usersRoutes.get("/", userController.getAllUsers);
+
 
 export default usersRoutes;
