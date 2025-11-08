@@ -6,10 +6,11 @@ class UserController {
 
   getAllUsers = async (req, res) => {
     try {
-      const user = await this.userService.getAllUsers();
+      const users = await this.userService.getAllUsers();
       res.status(200).send({
         success: true,
-        message: user,
+        message: "Usuarios obtenidos correctamente",
+        data: users,
       });
     } catch (error) {
       res.status(400).send({
@@ -36,6 +37,30 @@ class UserController {
       });
     } catch (error) {
       return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+  };
+
+  login = async (req, res) => {
+    try {
+      const { mail, pass } = req.body;
+      if (!mail || !pass) {
+        return res.status(400).json({
+          success: false,
+          message: "mail y pass son requeridos",
+        });
+      }
+
+      const user = await this.userService.login(mail, pass);
+      return res.status(200).json({
+        success: true,
+        message: "Login exitoso",
+        data: user,
+      });
+    } catch (error) {
+      return res.status(401).json({
         success: false,
         message: error.message,
       });
