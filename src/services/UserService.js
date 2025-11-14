@@ -37,8 +37,8 @@ class UserService {
     }
 
     // Retornar datos del usuario (sin la contraseña)
-    const { id, name, mail } = user;
-    return { id, name, mail };
+    const { id, name, mail:userMail } = user;
+    return { id, name, mail:userMail };
   };
 }
 
